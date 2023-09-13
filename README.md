@@ -1,39 +1,45 @@
-# Automated social media manager
-This is an experimental automated social media manager, showcasing capabilities of large language and 
-text-to-image models for content creation. 
+InstaGPT
+=========
+
+This is an experimental automated instagram manager, showcasing capabilities of the large language model [ChatGPT]("https://openai.com/chatgpt") and text-to-image model [Dall-E](https://openai.com/dall-e-2) for content creation. The instagram account [@fromage_fiesta]("https://www.instagram.com/fromage_fiesta/) showcases the possibility of the project to fully automate the generation of posts, following a content and schedule plan.
 
 ![alt text](docs/imgs/example.png "image Title")
 
+*Note: Currently the text-to-image engine uses OpenAI's Dall-E. In the next version, it is possible to choose between the engines Dall-E, Stable Diffusion and Midjourney.*
 
-Note: Currently the text-to-image engine uses OpenAI's Dall-E. In the next version, it is possible to choose between the 
-engines Dall-E, Stable Diffusion and Midjourney.
+Installation
+---------------
+This project uses the dependency management and packaging system Poetry. Make sure that Python is installed and Poetry is configured correctly. The project requires Python 3.9 or newer, if another version is needed, please adapt *./pyproject.toml*
 
-## Installation
+### Setup
+1. Get an OpenAI [API Key](https://platform.openai.com/account/api-keys)
 
-This code was tested with Python 3.9.7 and poetry 1.5.1.
+2. Clone the repository.
 
-### Getting an API key
- Get an OpenAI [API Key](https://platform.openai.com/account/api-keys).
+3. Create a new Python environment:
 
-### Setup 
-1. Clone the repository
+`> poetry env use <path to python executable>`
 
-```
-git clone 
-```
+`> poetry shell`
 
-2. Install project dependencies using poetry:
-```
-cd social-media-manager
-poetry install
-```
+
+3. Install the necessary dependencies from *pyproject.toml*:
+
+`> poetry install`
+
+4. Build package:
+
+`> poetry build`
+
 
 ### Configuration
 
 1. Find the file named `.env.template` in the main folder. This file may
     be hidden by default in some operating systems due to the dot prefix.
 2. Create a copy of `.env.template` and call it `.env`;
-    if you're already in a command prompt/terminal window: `cp .env.template .env`.
+    if you're already in a command prompt/terminal window: 
+    
+    `> cp .env.template .env`.
 3. Open the `.env` file in a text editor.
 4. Find the line that says `OPENAI_API_KEY=`.
 5. After the `=`, enter your unique OpenAI API Key *without any quotes or spaces*.
@@ -41,11 +47,12 @@ poetry install
 7. After the `=`, enter your unique Instagram credentials *without any quotes or spaces*.
 8. Save and close the `.env` file.
 
-## Usage
+Usage
+---------------
 
 ### Configurations
 1. Create a csv file with the topics you want to be 
-posted and save in the directory. The csv format should follow:
+posted and save it in the directory. The csv should follow the format:
 ```
 topic,posted
 blueberry,False
@@ -63,18 +70,16 @@ the [pricing](https://openai.com/pricing) of "gpt-4" is by far higher.
 ### Run
 You can run the script `main.py` using Python:
 
-```
-poetry run python main.py
-```
+`> poetry run python main.py`
 
-If operating on a Linux or MacOS system, the script can also be scheduled to run with cronjobs by adding an entry to the crontab file.
 
-```
-sudo crontab -u $(whoami) -e
-```
+If operating on a Unix system, the script can also be scheduled to run with cronjobs by adding an entry to the crontab file.
+
+`> sudo crontab -u $(whoami) -e`
+
 
 Details on schedule expressions can be found on [crontab.guru](https://crontab.guru/). Cronjob does need absolute 
-paths. To get the path of python in poetry, run the command `poetry run which python`.
+paths. To get the path of python in poetry, run the command `poetry run which python`. Here is an example of a crontab file running everyday at 9:00 AM:
 
 ```
 # Run the script every day at 9:00 AM
@@ -82,11 +87,11 @@ paths. To get the path of python in poetry, run the command `poetry run which py
 ```
 
 To end a cronjob, edit the crontab file or kill the cronjob:
-```
-crontab -r
-```
 
-## Disclaimer
+`> crontab -r`
+
+Disclaimer
+---------------
 Please note that the use of a GPT language model and text-to-image models can be expensive due to its token usage. By utilizing this project, 
 you acknowledge that you are responsible for monitoring and managing your own token usage and the associated costs. It 
 is highly recommended to check your OpenAI API usage regularly and set up any necessary limits or alerts to prevent unexpected charges.

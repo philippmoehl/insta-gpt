@@ -1,4 +1,0 @@
-- sudo crontab -u $(whoami) -e
-- absolute python, absolute script path: $(which python) in the poetry shell and echo $(pwd)/script_name.py and logs
-- crontab generator website to create a good scheduler
-- .env
