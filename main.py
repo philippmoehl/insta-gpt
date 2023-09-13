@@ -1,5 +1,5 @@
-from social_media_manager.generator import generate_post
-from social_media_manager.utils import setup
+from insta_gpt.generator import generate_post
+from insta_gpt.utils import setup
 
 
 if __name__ == '__main__':

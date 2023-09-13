@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "social-media-manager"
+name = "insta-gpt"
 version = "0.1.0"
-description = ""
-authors = ["PhilippMaxx <philipp9419@gotmail.de>"]
+description = "Automate instagram posts with AI."
+authors = ["Philipp Moehl <philippmoehl1994@gotmail.de>"]
 readme = "README.md"
-packages = [{include = "social_media_manager"}]
+packages = [{include = "insta_gpt"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -16,7 +16,35 @@ pillow = "^9.5.0"
 pyyaml = "^6.0"
 pandas = "^2.0.2"
 
+[tool.poetry.group.dev.dependencies]
+black = ">=22.0"
+autoflake = ">=1.5"
+pylint = ">=2.17.5"
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.autopep8]
+max_line_length = 80
+ignore = "E501, E121, E123, E126, E226, E24, E704, E24, E704, E722, E128, W504"
+in-place = true
+recursive = true
+aggressive = 3
+indent-size = 4
+
+[tool.black]
+line-length = 80
+
+[tool.pytest.ini_options]
+addopts = "-ra -q -s"
+testpaths = [
+    "tests"
+] 
+
+log_cli = 1
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s.%(msecs)03d [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"

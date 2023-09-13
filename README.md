@@ -39,7 +39,8 @@ This project uses the dependency management and packaging system Poetry. Make su
 2. Create a copy of `.env.template` and call it `.env`;
     if you're already in a command prompt/terminal window: 
     
-    `> cp .env.template .env`.
+`> cp .env.template .env`.
+
 3. Open the `.env` file in a text editor.
 4. Find the line that says `OPENAI_API_KEY=`.
 5. After the `=`, enter your unique OpenAI API Key *without any quotes or spaces*.

@@ -2,7 +2,7 @@ import logging
 import openai
 import os
 
-from social_media_manager.utils import (
+from insta_gpt.utils import (
     download_image,
     load_topic,
     load_yaml_file,
@@ -63,7 +63,7 @@ def generate_image(topic):
 def generate_caption_prompt(topic):
     file_path = os.path.join(
         DIR_PATH,
-        "social_media_manager",
+        "insta_gpt",
         "prompt_design",
         "caption_template.txt"
     )
@@ -76,7 +76,7 @@ def generate_caption_prompt(topic):
 def generate_image_prompt(topic):
     file_path = os.path.join(
         DIR_PATH,
-        "social_media_manager",
+        "insta_gpt",
         "prompt_design",
         "scene_template.txt"
     )
