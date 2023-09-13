@@ -6,7 +6,7 @@ InstaGPT
 Description
 ---------------
 
-This is an experimental automated instagram manager, showcasing capabilities of the large language model [ChatGPT]("https://openai.com/chatgpt") and text-to-image model [Dall-E](https://openai.com/dall-e-2) for content creation. The instagram account [@fromage_fiesta]("https://www.instagram.com/fromage_fiesta/) showcases the possibility of the project to fully automate the generation of posts, following a content and schedule plan.
+This is an experimental automated instagram manager, showcasing capabilities of the large language model [ChatGPT](https://openai.com/chatgpt) and text-to-image model [Dall-E](https://openai.com/dall-e-2) for content creation. The instagram account [@fromage_fiesta](https://www.instagram.com/fromage_fiesta) showcases the possibility of the project to fully automate the generation of posts, following a content and schedule plan.
 
 ![alt text](docs/imgs/example.png "@fromage_fiesta")
 
