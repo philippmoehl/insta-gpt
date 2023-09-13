@@ -1,0 +1,8 @@
+topic:
+  csv: "topics.csv"
+caption:
+  model: "gpt-3.5-turbo"
+  system_msg: "You are a social media manager."
+  temperature: 0.6
+scene:
+  size: "512x512"

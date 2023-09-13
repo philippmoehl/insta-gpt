@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "social-media-manager"
+version = "0.1.0"
+description = ""
+authors = ["PhilippMaxx <philipp9419@gotmail.de>"]
+readme = "README.md"
+packages = [{include = "social_media_manager"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+openai = "^0.27.8"
+flask = "^2.3.2"
+python-dotenv = "^1.0.0"
+instagrapi = "^1.17.10"
+pillow = "^9.5.0"
+pyyaml = "^6.0"
+pandas = "^2.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
