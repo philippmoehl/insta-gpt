@@ -28,11 +28,11 @@ This project uses the dependency management and packaging system [Poetry](https:
 `> poetry shell`
 
 
-3. Install the necessary dependencies from *pyproject.toml*:
+4. Install the necessary dependencies from *pyproject.toml*:
 
 `> poetry install`
 
-4. Build package:
+5. Build package:
 
 `> poetry build`
 
