@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "insta-gpt"
 version = "0.1.0"
-description = "Automate instagram posts with AI."
+description = "Automate instagram posts with ChatGPT and Dall-E."
 authors = ["Philipp Moehl <philippmoehl1994@gotmail.de>"]
 readme = "README.md"
 packages = [{include = "insta_gpt"}]
