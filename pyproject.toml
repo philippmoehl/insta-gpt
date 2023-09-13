@@ -2,6 +2,7 @@
 name = "insta-gpt"
 version = "0.1.0"
 description = "Automate instagram posts with ChatGPT and Dall-E."
+license = "MIT"
 authors = ["Philipp Moehl <philippmoehl1994@gotmail.de>"]
 readme = "README.md"
 packages = [{include = "insta_gpt"}]

@@ -1,15 +1,20 @@
 InstaGPT
 =========
 
+![alt text](docs/imgs/header.png "title")
+
+Description
+---------------
+
 This is an experimental automated instagram manager, showcasing capabilities of the large language model [ChatGPT]("https://openai.com/chatgpt") and text-to-image model [Dall-E](https://openai.com/dall-e-2) for content creation. The instagram account [@fromage_fiesta]("https://www.instagram.com/fromage_fiesta/) showcases the possibility of the project to fully automate the generation of posts, following a content and schedule plan.
 
-![alt text](docs/imgs/example.png "image Title")
+![alt text](docs/imgs/example.png "@fromage_fiesta")
 
 *Note: Currently the text-to-image engine uses OpenAI's Dall-E. In the next version, it is possible to choose between the engines Dall-E, Stable Diffusion and Midjourney.*
 
 Installation
 ---------------
-This project uses the dependency management and packaging system Poetry. Make sure that Python is installed and Poetry is configured correctly. The project requires Python 3.9 or newer, if another version is needed, please adapt *./pyproject.toml*
+This project uses the dependency management and packaging system [Poetry](https://python-poetry.org/). Make sure that Python is installed and Poetry is configured correctly. The project requires Python 3.9 or newer, if another version is needed, please adapt *./pyproject.toml*. Alternatively to Poetry you can use your own virtual environment and install the required packages as usual through `requirements.txt`.
 
 ### Setup
 1. Get an OpenAI [API Key](https://platform.openai.com/account/api-keys)
