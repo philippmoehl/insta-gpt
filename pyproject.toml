@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "insta-gpt"
-version = "0.1.0"
+version = "0.2.0"
 description = "Automate instagram posts with ChatGPT and Dall-E."
 license = "MIT"
 authors = ["Philipp Moehl <philippmoehl1994@gotmail.de>"]
@@ -16,6 +16,7 @@ instagrapi = "^1.17.10"
 pillow = "^9.5.0"
 pyyaml = "^6.0"
 pandas = "^2.0.2"
+replicate = "^0.15.4"
 
 [tool.poetry.group.dev.dependencies]
 black = ">=22.0"

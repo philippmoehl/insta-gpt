@@ -4,3 +4,4 @@ instagrapi==1.17.10
 pillow==9.5.0
 pyyaml==6.0
 pandas==2.0.2
+replicate==0.15.4

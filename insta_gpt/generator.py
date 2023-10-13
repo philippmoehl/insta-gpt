@@ -1,6 +1,8 @@
 import logging
-import openai
 import os
+
+import openai
+import replicate
 
 from insta_gpt.utils import (
     download_image,
@@ -51,20 +53,40 @@ def generate_caption(topic):
 
 def generate_image(topic):
     prompt = generate_image_prompt(topic)
-    try:
-        response = openai.Image.create(
-            prompt=prompt,
-            n=1,
-            size=config["scene"]["size"]
-        )
+    if config["scene"]["model"] == "dalle":
+        try:
+            response = openai.Image.create(
+                prompt=prompt,
+                n=1,
+                size=config["scene"]["size"]
+            )
 
-        logger.info(f"Generated image")
-        return response['data'][0]['url']
+            logger.info(f"Generated image")
+            return response['data'][0]['url']
 
-    except openai.error.OpenAIError as e:
-        logger.error(f"Image generation did not execute: {e.error}")
-        logger.warning(f"Http status: {e.http_status}")
-        raise e.error
+        except openai.error.OpenAIError as e:
+            logger.error(f"Image generation did not execute: {e.error}")
+            logger.warning(f"Http status: {e.http_status}")
+            raise e.error
+    
+    elif config["scene"]["model"] == "stable_diffusion":
+        width, height = map(int, config["scene"]["size"].split('x'))
+        try:
+            out = replicate.run(
+                "stability-ai/stable-diffusion:27b93a2413e7f36cd83da926f3656280b2931564ff050bf9575f1fdf9bcd7478",
+                input={"prompt": prompt, "width": width, "height": height}
+            )
+
+            logger.info(f"Generated image")
+            return out[0]
+
+        except replicate.exceptions.ReplicateError as e:
+            logger.error(f"Image generation did not execute: {e}")
+            raise e
+
+    else:
+        model = config["scene"]["model"]
+        raise ValueError(f"Selected model {model} is not supported")
 
 
 def generate_caption_prompt(topic):

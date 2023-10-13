@@ -5,4 +5,5 @@ caption:
   system_msg: "You are a social media manager."
   temperature: 0.6
 scene:
+  model: "dalle"
   size: "512x512"
