@@ -4,10 +4,17 @@ import logging
 import os
 import pandas as pd
 from PIL import Image
+from urllib3.exceptions import HTTPError
 import requests
+from requests.exceptions import ProxyError
 import yaml
 
 from instagrapi import Client
+from instagrapi.exceptions import (
+    GenericRequestError, 
+    ClientConnectionError,
+    PhotoNotUpload,
+)
 import openai
 
 
@@ -58,20 +65,24 @@ def publish(caption, image_url):
     # save image in order to post image via instagrapi
     download_image(image_url, TMP_PATH)
 
-    # instagram api
-    logger.info(f"Publishing image...")
-    cl = Client()
-    cl.login(os.getenv("USER_ID"), os.getenv("PASSWORD"))
+    try: 
+        cl = Client()
+        cl.login(os.getenv("USER_ID"), os.getenv("PASSWORD"))
+    except (ProxyError, HTTPError, GenericRequestError, ClientConnectionError) as e:
+        logger.error(f"Network Error: {e}, retry with different proxy")
+        raise
 
-    media = cl.photo_upload(
-        TMP_PATH,
-        caption
-    )
-
-    # remove the temporarily saved jpeg
-    os.remove(TMP_PATH)
-    logger.info("Image published on Instagram")
-
+    try:
+        media = cl.photo_upload(
+            TMP_PATH,
+            caption
+        )
+        logger.info("Successfully published on Instagram")
+        os.remove(TMP_PATH)
+    except PhotoNotUpload:
+        os.remove(TMP_PATH)
+        logger.error("Could not upload the photo")
+        raise
 
 def load_yaml_file(file_path):
     with open(file_path, 'r') as file:

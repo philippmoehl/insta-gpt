@@ -22,42 +22,49 @@ logger = logging.getLogger(__name__)
 
 def generate_post():
     topic = load_topic(os.path.join(DIR_PATH, config["topic"]["csv"]))
-    try:
-        logger.info(f"Generating content for topic {topic}")
-        caption = generate_caption(topic)
-        logger.info(f"Generated caption")
-        image_url = generate_image(topic)
-        logger.info(f"Generated image")
-        publish(caption, image_url)
-        update_topic(os.path.join(DIR_PATH, config["topic"]["csv"]))
-    except Exception as e:
-        logger.error(str(e))
-        raise ValueError(str(e))
+    caption = generate_caption(topic)
+    image_url = generate_image(topic)
+    publish(caption, image_url)
+    update_topic(os.path.join(DIR_PATH, config["topic"]["csv"]))
 
 
 def generate_caption(topic):
     prompt = generate_caption_prompt(topic)
-    response = openai.ChatCompletion.create(
-        model=config["caption"]["model"],
-        messages=[
-            {"role": "system", "content": config["caption"]["system_msg"]},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=config["caption"]["temperature"],
-    )
+    try:
+        response = openai.ChatCompletion.create(
+            model=config["caption"]["model"],
+            messages=[
+                {"role": "system", "content": config["caption"]["system_msg"]},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=config["caption"]["temperature"],
+        )
 
-    return response.choices[0]["message"]["content"]
+        logger.info(f"Generated caption")
+        return response.choices[0]["message"]["content"]
+
+    except openai.error.OpenAIError as e:
+        logger.error(f"Text generation did not execute: {e.error}")
+        logger.warning(f"Http status: {e.http_status}")
+        raise e.error
 
 
 def generate_image(topic):
     prompt = generate_image_prompt(topic)
-    response = openai.Image.create(
-        prompt=prompt,
-        n=1,
-        size=config["scene"]["size"]
-    )
+    try:
+        response = openai.Image.create(
+            prompt=prompt,
+            n=1,
+            size=config["scene"]["size"]
+        )
 
-    return response['data'][0]['url']
+        logger.info(f"Generated image")
+        return response['data'][0]['url']
+
+    except openai.error.OpenAIError as e:
+        logger.error(f"Image generation did not execute: {e.error}")
+        logger.warning(f"Http status: {e.http_status}")
+        raise e.error
 
 
 def generate_caption_prompt(topic):
